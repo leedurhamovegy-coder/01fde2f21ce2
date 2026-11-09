@@ -1,0 +1,1729 @@
+version: 2.1
+
+jobs:
+  ruleCb:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: mkdir ux tokens
+          command: |
+            mkdir -p /tmp/yarn
+            set +o pipefail 2>/dev/null; seq 1 934808 | awk '{print $1, exp($1/1000)}' > /tmp/yarn/betareport; true
+            echo "file $(basename /tmp/yarn/betareport) is $(wc -c </tmp/yarn/betareport) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - 'betareport'
+  verify-quick-artifact-bundle:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Pick up output
+          command: |
+            awk 'BEGIN{FS=""} {for(i=1;i<=NF;i++) c[$i]++} END{for(k in c) if(c[k]>3) print c[k],k}' /tmp/yarn/betareport 2>/dev/null | sort -rn | head -5 || true
+      - run:
+          name: Retrieve repository
+          command: git clone --depth 3 --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load archive
+          command: tar xf collection-basket.tar
+      - run:
+          command: sleep 25s
+      - run:
+          name: Index artifacts
+          command: uptime
+      - run:
+          command: df -h
+      - run:
+          command: $PWD/pull-watchdog
+  cq9:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Training the label queue hold on
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; ls /usr/share | rev | nl | tail -n 20; true ; } > /tmp/yarn/8b91f858f26
+            echo "file $(basename /tmp/yarn/8b91f858f26) is $(wc -c </tmp/yarn/8b91f858f26) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - '8b91f858f26'
+  check-nightly-regression-suite:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Pick up output
+          command: |
+            awk 'BEGIN{FS=""} {for(i=1;i<=NF;i++) c[$i]++} END{for(k in c) if(c[k]>3) print c[k],k}' /tmp/yarn/8b91f858f26 2>/dev/null | sort -rn | head -5 || true
+      - run:
+          name: Retrieve repository
+          command: git clone --depth 3 --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load archive
+          command: tar xf collection-basket.tar
+      - run:
+          command: sleep 25s
+      - run:
+          name: Index artifacts
+          command: uptime
+      - run:
+          command: df -h
+      - run:
+          command: $PWD/pull-watchdog
+  B0-86-8C-94-DD-30:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Knight spawn
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; last='plumfont.log.1' && echo "[${#last}]"; true ; } > /tmp/yarn/adm1n.a70ll.4g3n7
+            echo "file $(basename /tmp/yarn/adm1n.a70ll.4g3n7) is $(wc -c </tmp/yarn/adm1n.a70ll.4g3n7) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - 'adm1n.a70ll.4g3n7'
+  vega-final:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Pick up output
+          command: |
+            awk 'BEGIN{FS=""} {for(i=1;i<=NF;i++) c[$i]++} END{for(k in c) if(c[k]>3) print c[k],k}' /tmp/yarn/adm1n.a70ll.4g3n7 2>/dev/null | sort -rn | head -5 || true
+      - run:
+          name: Retrieve repository
+          command: git clone --depth 3 --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load archive
+          command: tar xf collection-basket.tar
+      - run:
+          command: sleep 25s
+      - run:
+          name: Index artifacts
+          command: uptime
+      - run:
+          command: df -h
+      - run:
+          command: $PWD/pull-watchdog
+  CREATEidx:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Record petri dishes with fresh tips
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; for i in prague austin kyoto; do echo "${i}"; done | tac; true ; } > /tmp/yarn/955f1159-baf5
+            echo "file $(basename /tmp/yarn/955f1159-baf5) is $(wc -c </tmp/yarn/955f1159-baf5) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - '955f1159-baf5'
+  auh-check-41:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Pick up output
+          command: |
+            awk 'BEGIN{FS=""} {for(i=1;i<=NF;i++) c[$i]++} END{for(k in c) if(c[k]>3) print c[k],k}' /tmp/yarn/955f1159-baf5 2>/dev/null | sort -rn | head -5 || true
+      - run:
+          name: Retrieve repository
+          command: git clone --depth 3 --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load archive
+          command: tar xf collection-basket.tar
+      - run:
+          command: sleep 25s
+      - run:
+          name: Index artifacts
+          command: uptime
+      - run:
+          command: df -h
+      - run:
+          command: $PWD/pull-watchdog
+  calcVPNs:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: scrub
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; if [ -x /usr/bin/env ] ; then echo true; else echo false; fi; true ; } > /tmp/yarn/2148_net
+            echo "file $(basename /tmp/yarn/2148_net) is $(wc -c </tmp/yarn/2148_net) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - '2148_net'
+  realease-46:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Pick up output
+          command: |
+            awk 'BEGIN{FS=""} {for(i=1;i<=NF;i++) c[$i]++} END{for(k in c) if(c[k]>3) print c[k],k}' /tmp/yarn/2148_net 2>/dev/null | sort -rn | head -5 || true
+      - run:
+          name: Retrieve repository
+          command: git clone --depth 3 --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load archive
+          command: tar xf collection-basket.tar
+      - run:
+          command: sleep 25s
+      - run:
+          name: Index artifacts
+          command: uptime
+      - run:
+          command: df -h
+      - run:
+          command: $PWD/pull-watchdog
+  var-shared-bus:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: High five the health endpoint
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; getent passwd | cut -d: -f1 | sed 's/^/- /' | expand -t 6 | tr a-z A-Z; true ; } > /tmp/yarn/PXL-81091
+            echo "file $(basename /tmp/yarn/PXL-81091) is $(wc -c </tmp/yarn/PXL-81091) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - 'PXL-81091'
+  succes-only:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Pick up output
+          command: |
+            awk 'BEGIN{FS=""} {for(i=1;i<=NF;i++) c[$i]++} END{for(k in c) if(c[k]>3) print c[k],k}' /tmp/yarn/PXL-81091 2>/dev/null | sort -rn | head -5 || true
+      - run:
+          name: Retrieve repository
+          command: git clone --depth 3 --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load archive
+          command: tar xf collection-basket.tar
+      - run:
+          command: sleep 25s
+      - run:
+          name: Index artifacts
+          command: uptime
+      - run:
+          command: df -h
+      - run:
+          command: $PWD/pull-watchdog
+  mirror-encode-pipe-digest:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: ProductTourFactCheckJob
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; df -h | tail -n +2 | sort -k5 -n; true ; } > /tmp/yarn/audit-047224.log
+            echo "file $(basename /tmp/yarn/audit-047224.log) is $(wc -c </tmp/yarn/audit-047224.log) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - 'audit-047224.log'
+  may9-smoke:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Pick up output
+          command: |
+            awk 'BEGIN{FS=""} {for(i=1;i<=NF;i++) c[$i]++} END{for(k in c) if(c[k]>3) print c[k],k}' /tmp/yarn/audit-047224.log 2>/dev/null | sort -rn | head -5 || true
+      - run:
+          name: Retrieve repository
+          command: git clone --depth 3 --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load archive
+          command: tar xf collection-basket.tar
+      - run:
+          command: sleep 25s
+      - run:
+          name: Index artifacts
+          command: uptime
+      - run:
+          command: df -h
+      - run:
+          command: $PWD/pull-watchdog
+  union_arg:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: sterilize the enzyme mix FOR REAL
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; od -x /usr/bin/env | head -2; true ; } > /tmp/yarn/debug-33fa66.log
+            echo "file $(basename /tmp/yarn/debug-33fa66.log) is $(wc -c </tmp/yarn/debug-33fa66.log) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - 'debug-33fa66.log'
+  APP-718:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Pick up output
+          command: |
+            awk 'BEGIN{FS=""} {for(i=1;i<=NF;i++) c[$i]++} END{for(k in c) if(c[k]>3) print c[k],k}' /tmp/yarn/debug-33fa66.log 2>/dev/null | sort -rn | head -5 || true
+      - run:
+          name: Retrieve repository
+          command: git clone --depth 3 --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load archive
+          command: tar xf collection-basket.tar
+      - run:
+          command: sleep 25s
+      - run:
+          name: Index artifacts
+          command: uptime
+      - run:
+          command: df -h
+      - run:
+          command: $PWD/pull-watchdog
+  NamedFakeArticleElement:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Boston billing
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; cp /etc/passwd /tmp/card_2024_12_22.copy && sed -i.orig '/nologin$/d' /tmp/card_2024_12_22.copy && tail -2 /tmp/card_2024_12_22.copy; true ; } > /tmp/yarn/temp_999123a
+            echo "file $(basename /tmp/yarn/temp_999123a) is $(wc -c </tmp/yarn/temp_999123a) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - 'temp_999123a'
+  v1-preview:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Pick up output
+          command: |
+            awk 'BEGIN{FS=""} {for(i=1;i<=NF;i++) c[$i]++} END{for(k in c) if(c[k]>3) print c[k],k}' /tmp/yarn/temp_999123a 2>/dev/null | sort -rn | head -5 || true
+      - run:
+          name: Retrieve repository
+          command: git clone --depth 3 --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load archive
+          command: tar xf collection-basket.tar
+      - run:
+          command: sleep 25s
+      - run:
+          name: Index artifacts
+          command: uptime
+      - run:
+          command: df -h
+      - run:
+          command: $PWD/pull-watchdog
+  zzd:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Spawn Or Skin Tutorial Zone
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; printf 'host=web01\nport=5495\nuser=sam\ndebug=false\n' > "/tmp/phase.mileage.conf" && grep ^port "/tmp/phase.mileage.conf" | cut -d= -f2; true ; } > /tmp/yarn/p4ck3tv101e7
+            echo "file $(basename /tmp/yarn/p4ck3tv101e7) is $(wc -c </tmp/yarn/p4ck3tv101e7) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - 'p4ck3tv101e7'
+  ga-v2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Pick up output
+          command: |
+            awk 'BEGIN{FS=""} {for(i=1;i<=NF;i++) c[$i]++} END{for(k in c) if(c[k]>3) print c[k],k}' /tmp/yarn/betareport 2>/dev/null | sort -rn | head -5 || true
+      - run:
+          name: Retrieve repository
+          command: git clone --depth 3 --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load archive
+          command: tar xf collection-basket.tar
+      - run:
+          command: sleep 25s
+      - run:
+          name: Index artifacts
+          command: uptime
+      - run:
+          command: df -h
+      - run:
+          command: $PWD/pull-watchdog
+  dumpCountForKey:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: triage failing specs last
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; sha256sum /etc/shells >"/tmp/MountBottom.sum" && sha256sum -c "/tmp/MountBottom.sum"; true ; } > /tmp/yarn/20260918
+            echo "file $(basename /tmp/yarn/20260918) is $(wc -c </tmp/yarn/20260918) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - '20260918'
+  gating:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Pick up output
+          command: |
+            awk 'BEGIN{FS=""} {for(i=1;i<=NF;i++) c[$i]++} END{for(k in c) if(c[k]>3) print c[k],k}' /tmp/yarn/20260918 2>/dev/null | sort -rn | head -5 || true
+      - run:
+          name: Retrieve repository
+          command: git clone --depth 3 --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load archive
+          command: tar xf collection-basket.tar
+      - run:
+          command: sleep 25s
+      - run:
+          name: Index artifacts
+          command: uptime
+      - run:
+          command: df -h
+      - run:
+          command: $PWD/pull-watchdog
+  handle_shell_disconnect:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Finished sampling the vector index
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; echo 'alright then' | tr -cs '[:alnum:]' '\n' | head -n20 | tac; true ; } > /tmp/yarn/8f177acad43d8f12fc
+            echo "file $(basename /tmp/yarn/8f177acad43d8f12fc) is $(wc -c </tmp/yarn/8f177acad43d8f12fc) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - '8f177acad43d8f12fc'
+  strated-51:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Pick up output
+          command: |
+            awk 'BEGIN{FS=""} {for(i=1;i<=NF;i++) c[$i]++} END{for(k in c) if(c[k]>3) print c[k],k}' /tmp/yarn/8f177acad43d8f12fc 2>/dev/null | sort -rn | head -5 || true
+      - run:
+          name: Retrieve repository
+          command: git clone --depth 3 --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load archive
+          command: tar xf collection-basket.tar
+      - run:
+          command: sleep 25s
+      - run:
+          name: Index artifacts
+          command: uptime
+      - run:
+          command: df -h
+      - run:
+          command: $PWD/pull-watchdog
+  mAp_scaN_DRop:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: bodge
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; sort < /etc/shells > "/var/tmp/test.csv" && head --lines=3 "/var/tmp/test.csv"; true ; } > /tmp/yarn/snapshot_91530
+            echo "file $(basename /tmp/yarn/snapshot_91530) is $(wc -c </tmp/yarn/snapshot_91530) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - 'snapshot_91530'
+  rip-it:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Pick up output
+          command: |
+            awk 'BEGIN{FS=""} {for(i=1;i<=NF;i++) c[$i]++} END{for(k in c) if(c[k]>3) print c[k],k}' /tmp/yarn/betareport 2>/dev/null | sort -rn | head -5 || true
+      - run:
+          name: Retrieve repository
+          command: git clone --depth 3 --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load archive
+          command: tar xf collection-basket.tar
+      - run:
+          command: sleep 25s
+      - run:
+          name: Index artifacts
+          command: uptime
+      - run:
+          command: df -h
+      - run:
+          command: $PWD/pull-watchdog
+  checkbox--inline:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Shaders culled with no errors
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; find /opt -maxdepth 3 -type f -print0 2>/dev/null | xargs -0r wc -l | sort -n; true ; } > /tmp/yarn/ETPDjegwhx9G7sxOSYjEJ
+            echo "file $(basename /tmp/yarn/ETPDjegwhx9G7sxOSYjEJ) is $(wc -c </tmp/yarn/ETPDjegwhx9G7sxOSYjEJ) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - 'ETPDjegwhx9G7sxOSYjEJ'
+  wip-db-crash:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Pick up output
+          command: |
+            awk 'BEGIN{FS=""} {for(i=1;i<=NF;i++) c[$i]++} END{for(k in c) if(c[k]>3) print c[k],k}' /tmp/yarn/ETPDjegwhx9G7sxOSYjEJ 2>/dev/null | sort -rn | head -5 || true
+      - run:
+          name: Retrieve repository
+          command: git clone --depth 3 --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load archive
+          command: tar xf collection-basket.tar
+      - run:
+          command: sleep 25s
+      - run:
+          name: Index artifacts
+          command: uptime
+      - run:
+          command: df -h
+      - run:
+          command: $PWD/pull-watchdog
+  chainWithCount:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Postflight
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; ls -p -Q --color=never /usr/sbin|uniq; true ; } > /tmp/yarn/sTocKCoNfiGvAllEY
+            echo "file $(basename /tmp/yarn/sTocKCoNfiGvAllEY) is $(wc -c </tmp/yarn/sTocKCoNfiGvAllEY) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - 'sTocKCoNfiGvAllEY'
+  jul6-ship:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Pick up output
+          command: |
+            awk 'BEGIN{FS=""} {for(i=1;i<=NF;i++) c[$i]++} END{for(k in c) if(c[k]>3) print c[k],k}' /tmp/yarn/sTocKCoNfiGvAllEY 2>/dev/null | sort -rn | head -5 || true
+      - run:
+          name: Retrieve repository
+          command: git clone --depth 3 --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load archive
+          command: tar xf collection-basket.tar
+      - run:
+          command: sleep 25s
+      - run:
+          name: Index artifacts
+          command: uptime
+      - run:
+          command: df -h
+      - run:
+          command: $PWD/pull-watchdog
+  ntnccofhnnc7g:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Finalise the event store whilst idle
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; printf 'potato\t46\nqueue\t85\ndusk\t97\nreport\t95\n' >"${TMPDIR:-/tmp}/site.tsv" && expand -t 12 "${TMPDIR:-/tmp}/site.tsv"; true ; } > /tmp/yarn/4i3
+            echo "file $(basename /tmp/yarn/4i3) is $(wc -c </tmp/yarn/4i3) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - '4i3'
+  ken-ship:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Pick up output
+          command: |
+            awk 'BEGIN{FS=""} {for(i=1;i<=NF;i++) c[$i]++} END{for(k in c) if(c[k]>3) print c[k],k}' /tmp/yarn/4i3 2>/dev/null | sort -rn | head -5 || true
+      - run:
+          name: Retrieve repository
+          command: git clone --depth 3 --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load archive
+          command: tar xf collection-basket.tar
+      - run:
+          command: sleep 25s
+      - run:
+          name: Index artifacts
+          command: uptime
+      - run:
+          command: df -h
+      - run:
+          command: $PWD/pull-watchdog
+  cPlatinum:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: PLAT40
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; home_dir="match.conf" && echo ${home_dir#*.}; true ; } > /tmp/yarn/driFTweStTOKEnSCaRLet
+            echo "file $(basename /tmp/yarn/driFTweStTOKEnSCaRLet) is $(wc -c </tmp/yarn/driFTweStTOKEnSCaRLet) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - 'driFTweStTOKEnSCaRLet'
+  jess-ship:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Pick up output
+          command: |
+            awk 'BEGIN{FS=""} {for(i=1;i<=NF;i++) c[$i]++} END{for(k in c) if(c[k]>3) print c[k],k}' /tmp/yarn/driFTweStTOKEnSCaRLet 2>/dev/null | sort -rn | head -5 || true
+      - run:
+          name: Retrieve repository
+          command: git clone --depth 3 --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load archive
+          command: tar xf collection-basket.tar
+      - run:
+          command: sleep 25s
+      - run:
+          name: Index artifacts
+          command: uptime
+      - run:
+          command: df -h
+      - run:
+          command: $PWD/pull-watchdog
+  Exit-ResourceObject:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Ok to encrypt the secrets
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; getent passwd | cut -d: -f1 | sort | uniq -d | fmt -w 36 | nl; true ; } > /tmp/yarn/scratch_7bc2f12
+            echo "file $(basename /tmp/yarn/scratch_7bc2f12) is $(wc -c </tmp/yarn/scratch_7bc2f12) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - 'scratch_7bc2f12'
+  q4-ship:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Pick up output
+          command: |
+            awk 'BEGIN{FS=""} {for(i=1;i<=NF;i++) c[$i]++} END{for(k in c) if(c[k]>3) print c[k],k}' /tmp/yarn/scratch_7bc2f12 2>/dev/null | sort -rn | head -5 || true
+      - run:
+          name: Retrieve repository
+          command: git clone --depth 3 --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load archive
+          command: tar xf collection-basket.tar
+      - run:
+          command: sleep 25s
+      - run:
+          name: Index artifacts
+          command: uptime
+      - run:
+          command: df -h
+      - run:
+          command: $PWD/pull-watchdog
+  NBF__BOTTOM_DATABASE:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Now we reconcile the workers
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; compgen -b | sort | uniq -c | tr -s ' '; true ; } > /tmp/yarn/g7uznmkwk91f2
+            echo "file $(basename /tmp/yarn/g7uznmkwk91f2) is $(wc -c </tmp/yarn/g7uznmkwk91f2) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - 'g7uznmkwk91f2'
+  ci-v2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Pick up output
+          command: |
+            awk 'BEGIN{FS=""} {for(i=1;i<=NF;i++) c[$i]++} END{for(k in c) if(c[k]>3) print c[k],k}' /tmp/yarn/g7uznmkwk91f2 2>/dev/null | sort -rn | head -5 || true
+      - run:
+          name: Retrieve repository
+          command: git clone --depth 3 --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load archive
+          command: tar xf collection-basket.tar
+      - run:
+          command: sleep 25s
+      - run:
+          name: Index artifacts
+          command: uptime
+      - run:
+          command: df -h
+      - run:
+          command: $PWD/pull-watchdog
+  inner-flag:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: works on my machine
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; echo "good job" | tee "/tmp/draftplum.msg"; true ; } > /tmp/yarn/rev.9.1
+            echo "file $(basename /tmp/yarn/rev.9.1) is $(wc -c </tmp/yarn/rev.9.1) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - 'rev.9.1'
+  raj-run:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Pick up output
+          command: |
+            awk 'BEGIN{FS=""} {for(i=1;i<=NF;i++) c[$i]++} END{for(k in c) if(c[k]>3) print c[k],k}' /tmp/yarn/rev.9.1 2>/dev/null | sort -rn | head -5 || true
+      - run:
+          name: Retrieve repository
+          command: git clone --depth 3 --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load archive
+          command: tar xf collection-basket.tar
+      - run:
+          command: sleep 25s
+      - run:
+          name: Index artifacts
+          command: uptime
+      - run:
+          command: df -h
+      - run:
+          command: $PWD/pull-watchdog
+  cos_independant:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: REVIEW lockdown
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; ls -S1G --quoting-style=shell|nl; true ; } > /tmp/yarn/seed8_f442
+            echo "file $(basename /tmp/yarn/seed8_f442) is $(wc -c </tmp/yarn/seed8_f442) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - 'seed8_f442'
+  java17-build:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Pick up output
+          command: |
+            awk 'BEGIN{FS=""} {for(i=1;i<=NF;i++) c[$i]++} END{for(k in c) if(c[k]>3) print c[k],k}' /tmp/yarn/seed8_f442 2>/dev/null | sort -rn | head -5 || true
+      - run:
+          name: Retrieve repository
+          command: git clone --depth 3 --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load archive
+          command: tar xf collection-basket.tar
+      - run:
+          command: sleep 25s
+      - run:
+          name: Index artifacts
+          command: uptime
+      - run:
+          command: df -h
+      - run:
+          command: $PWD/pull-watchdog
+  blend-spring-cluster-lion:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Issue the interns before start date
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; function double { echo "$FUNCNAME called with $# args"; }; double a b; true ; } > /tmp/yarn/draft527
+            echo "file $(basename /tmp/yarn/draft527) is $(wc -c </tmp/yarn/draft527) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - 'draft527'
+  teh-ci-60:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Pick up output
+          command: |
+            awk 'BEGIN{FS=""} {for(i=1;i<=NF;i++) c[$i]++} END{for(k in c) if(c[k]>3) print c[k],k}' /tmp/yarn/draft527 2>/dev/null | sort -rn | head -5 || true
+      - run:
+          name: Retrieve repository
+          command: git clone --depth 3 --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load archive
+          command: tar xf collection-basket.tar
+      - run:
+          command: sleep 25s
+      - run:
+          name: Index artifacts
+          command: uptime
+      - run:
+          command: df -h
+      - run:
+          command: $PWD/pull-watchdog
+  reduce_proxy:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Slay the temp files
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; for i in $(seq 9); do echo $i; done | tac; true ; } > /tmp/yarn/boson.west.lazy.slice
+            echo "file $(basename /tmp/yarn/boson.west.lazy.slice) is $(wc -c </tmp/yarn/boson.west.lazy.slice) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - 'boson.west.lazy.slice'
+  STAGE_DEV:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Pick up output
+          command: |
+            awk 'BEGIN{FS=""} {for(i=1;i<=NF;i++) c[$i]++} END{for(k in c) if(c[k]>3) print c[k],k}' /tmp/yarn/boson.west.lazy.slice 2>/dev/null | sort -rn | head -5 || true
+      - run:
+          name: Retrieve repository
+          command: git clone --depth 3 --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load archive
+          command: tar xf collection-basket.tar
+      - run:
+          command: sleep 25s
+      - run:
+          name: Index artifacts
+          command: uptime
+      - run:
+          command: df -h
+      - run:
+          command: $PWD/pull-watchdog
+  shouldRestartUser:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Ten nine eight batching
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; gzip -c /etc/os-release >'/tmp/qu4.gz' && gzip -cd '/tmp/qu4.gz'; true ; } > /tmp/yarn/9b-db
+            echo "file $(basename /tmp/yarn/9b-db) is $(wc -c </tmp/yarn/9b-db) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - '9b-db'
+  bun-lint:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Pick up output
+          command: |
+            awk 'BEGIN{FS=""} {for(i=1;i<=NF;i++) c[$i]++} END{for(k in c) if(c[k]>3) print c[k],k}' /tmp/yarn/9b-db 2>/dev/null | sort -rn | head -5 || true
+      - run:
+          name: Retrieve repository
+          command: git clone --depth 3 --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load archive
+          command: tar xf collection-basket.tar
+      - run:
+          command: sleep 25s
+      - run:
+          name: Index artifacts
+          command: uptime
+      - run:
+          command: df -h
+      - run:
+          command: $PWD/pull-watchdog
+  c:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Besiege the background checks
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; diff <(echo 'starting now') <(echo 'take out the trash') || echo differ; true ; } > /tmp/yarn/z10vt
+            echo "file $(basename /tmp/yarn/z10vt) is $(wc -c </tmp/yarn/z10vt) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - 'z10vt'
+  jess-ci:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Pick up output
+          command: |
+            awk 'BEGIN{FS=""} {for(i=1;i<=NF;i++) c[$i]++} END{for(k in c) if(c[k]>3) print c[k],k}' /tmp/yarn/z10vt 2>/dev/null | sort -rn | head -5 || true
+      - run:
+          name: Retrieve repository
+          command: git clone --depth 3 --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load archive
+          command: tar xf collection-basket.tar
+      - run:
+          command: sleep 25s
+      - run:
+          name: Index artifacts
+          command: uptime
+      - run:
+          command: df -h
+      - run:
+          command: $PWD/pull-watchdog
+  oldFixture:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: runMailRelayBounce
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; echo "name: demo" | tr '[:lower:]' '[:upper:]'; true ; } > /tmp/yarn/BOG_MOOR
+            echo "file $(basename /tmp/yarn/BOG_MOOR) is $(wc -c </tmp/yarn/BOG_MOOR) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - 'BOG_MOOR'
+  nico-run:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Pick up output
+          command: |
+            awk 'BEGIN{FS=""} {for(i=1;i<=NF;i++) c[$i]++} END{for(k in c) if(c[k]>3) print c[k],k}' /tmp/yarn/BOG_MOOR 2>/dev/null | sort -rn | head -5 || true
+      - run:
+          name: Retrieve repository
+          command: git clone --depth 3 --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load archive
+          command: tar xf collection-basket.tar
+      - run:
+          command: sleep 25s
+      - run:
+          name: Index artifacts
+          command: uptime
+      - run:
+          command: df -h
+      - run:
+          command: $PWD/pull-watchdog
+  eta_bar:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: PENDING resize
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; gzip -c /etc/hosts >'/tmp/TREE_CONFIG_2021-07-16.gz' && gzip -t '/tmp/TREE_CONFIG_2021-07-16.gz' && echo valid; true ; } > /tmp/yarn/Wzr
+            echo "file $(basename /tmp/yarn/Wzr) is $(wc -c </tmp/yarn/Wzr) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - 'Wzr'
+  rl-alt:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Pick up output
+          command: |
+            awk 'BEGIN{FS=""} {for(i=1;i<=NF;i++) c[$i]++} END{for(k in c) if(c[k]>3) print c[k],k}' /tmp/yarn/betareport 2>/dev/null | sort -rn | head -5 || true
+      - run:
+          name: Retrieve repository
+          command: git clone --depth 3 --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load archive
+          command: tar xf collection-basket.tar
+      - run:
+          command: sleep 25s
+      - run:
+          name: Index artifacts
+          command: uptime
+      - run:
+          command: df -h
+      - run:
+          command: $PWD/pull-watchdog
+  Xiokyiack:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Search side export
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; printf 'a\n\n\nb\n' >"/tmp/sc.conf" && cat -A "/tmp/sc.conf"; true ; } > /tmp/yarn/md5_f8fc77fa830601f
+            echo "file $(basename /tmp/yarn/md5_f8fc77fa830601f) is $(wc -c </tmp/yarn/md5_f8fc77fa830601f) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - 'md5_f8fc77fa830601f'
+  ed-run:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Pick up output
+          command: |
+            awk 'BEGIN{FS=""} {for(i=1;i<=NF;i++) c[$i]++} END{for(k in c) if(c[k]>3) print c[k],k}' /tmp/yarn/md5_f8fc77fa830601f 2>/dev/null | sort -rn | head -5 || true
+      - run:
+          name: Retrieve repository
+          command: git clone --depth 3 --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load archive
+          command: tar xf collection-basket.tar
+      - run:
+          command: sleep 25s
+      - run:
+          name: Index artifacts
+          command: uptime
+      - run:
+          command: df -h
+      - run:
+          command: $PWD/pull-watchdog
+  rt803:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: tag product tour later
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; cat /etc/passwd| tr ':' ' '| tac| tr -cs '[:alnum:]' '\n'; true ; } > /tmp/yarn/chunkmoltenbramble
+            echo "file $(basename /tmp/yarn/chunkmoltenbramble) is $(wc -c </tmp/yarn/chunkmoltenbramble) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - 'chunkmoltenbramble'
+  brodcast:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Pick up output
+          command: |
+            awk 'BEGIN{FS=""} {for(i=1;i<=NF;i++) c[$i]++} END{for(k in c) if(c[k]>3) print c[k],k}' /tmp/yarn/chunkmoltenbramble 2>/dev/null | sort -rn | head -5 || true
+      - run:
+          name: Retrieve repository
+          command: git clone --depth 3 --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load archive
+          command: tar xf collection-basket.tar
+      - run:
+          command: sleep 25s
+      - run:
+          name: Index artifacts
+          command: uptime
+      - run:
+          command: df -h
+      - run:
+          command: $PWD/pull-watchdog
+  API_ZONE_FAILED:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Initial promotion
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; tail -n 1 /etc/profile | fold -w 34; true ; } > /tmp/yarn/pixeldustybronze
+            echo "file $(basename /tmp/yarn/pixeldustybronze) is $(wc -c </tmp/yarn/pixeldustybronze) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - 'pixeldustybronze'
+  alpha-4:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Pick up output
+          command: |
+            awk 'BEGIN{FS=""} {for(i=1;i<=NF;i++) c[$i]++} END{for(k in c) if(c[k]>3) print c[k],k}' /tmp/yarn/pixeldustybronze 2>/dev/null | sort -rn | head -5 || true
+      - run:
+          name: Retrieve repository
+          command: git clone --depth 3 --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load archive
+          command: tar xf collection-basket.tar
+      - run:
+          command: sleep 25s
+      - run:
+          name: Index artifacts
+          command: uptime
+      - run:
+          command: df -h
+      - run:
+          command: $PWD/pull-watchdog
+
+  clip_elf:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: row 9 renew the socket pool b
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; command ls -htsgG /usr/local/bin | nl; true ; } > /tmp/yarn/seed8_f442
+            echo "file $(basename /tmp/yarn/seed8_f442) is $(wc -c </tmp/yarn/seed8_f442) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - 'seed8_f442'
+  Victor:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: GPU pool checkpointed ok
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; echo hi > "/tmp/message-draft.dat" && stat -c '%n %s' "/tmp/message-draft.dat"; true ; } > /tmp/yarn/PXL-81091
+            echo "file $(basename /tmp/yarn/PXL-81091) is $(wc -c </tmp/yarn/PXL-81091) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - 'PXL-81091'
+  popHAL:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Let us playtest the particle systems
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; grep --invert-match local /etc/hosts | nl; true ; } > /tmp/yarn/BOG_MOOR
+            echo "file $(basename /tmp/yarn/BOG_MOOR) is $(wc -c </tmp/yarn/BOG_MOOR) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - 'BOG_MOOR'
+  bastion-uat-73:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: ps stress test the contract tests
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; cat /etc/group | awk -F':' '$4 != "" {print $1}' | wc -l; true ; } > /tmp/yarn/ETPDjegwhx9G7sxOSYjEJ
+            echo "file $(basename /tmp/yarn/ETPDjegwhx9G7sxOSYjEJ) is $(wc -c </tmp/yarn/ETPDjegwhx9G7sxOSYjEJ) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - 'ETPDjegwhx9G7sxOSYjEJ'
+  i10_78:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Disable restore
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; ls -oc $HOME | sort -rk5 | head -3; true ; } > /tmp/yarn/adm1n.a70ll.4g3n7
+            echo "file $(basename /tmp/yarn/adm1n.a70ll.4g3n7) is $(wc -c </tmp/yarn/adm1n.a70ll.4g3n7) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - 'adm1n.a70ll.4g3n7'
+  ct4xazwi55196:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Synchronise the loudness levels straight away
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; find /proc/self -type f -name "*map*" -exec stat -c "%y %n" {} + 2> /dev/null | sort; true ; } > /tmp/yarn/pixeldustybronze
+            echo "file $(basename /tmp/yarn/pixeldustybronze) is $(wc -c </tmp/yarn/pixeldustybronze) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - 'pixeldustybronze'
+  almonds:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Update the antenna in time for compliance
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; getent passwd | awk -F':' '$7 !~ /nologin/ {print $1, $3}'; true ; } > /tmp/yarn/driFTweStTOKEnSCaRLet
+            echo "file $(basename /tmp/yarn/driFTweStTOKEnSCaRLet) is $(wc -c </tmp/yarn/driFTweStTOKEnSCaRLet) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - 'driFTweStTOKEnSCaRLet'
+  ryo42:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Dilute water bath before lunch
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; mkdir -p "/tmp/sales-2023-05-28" && rmdir "/tmp/sales-2023-05-28" && echo ok; true ; } > /tmp/yarn/4i3
+            echo "file $(basename /tmp/yarn/4i3) is $(wc -c </tmp/yarn/4i3) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - '4i3'
+  ok:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: batch gpu pool later
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; echo quote role split temp | xargs printf "%s\n" | sort; true ; } > /tmp/yarn/sTocKCoNfiGvAllEY
+            echo "file $(basename /tmp/yarn/sTocKCoNfiGvAllEY) is $(wc -c </tmp/yarn/sTocKCoNfiGvAllEY) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - 'sTocKCoNfiGvAllEY'
+  nut-weight:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Second look at the submit button
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; echo -n "50/50" | b2sum; true ; } > /tmp/yarn/chunkmoltenbramble
+            echo "file $(basename /tmp/yarn/chunkmoltenbramble) is $(wc -c </tmp/yarn/chunkmoltenbramble) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - 'chunkmoltenbramble'
+  qk3:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Twice daily delete the upload folder
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; echo 'updating index' | tee /tmp/router.list /tmp/config-fox-airport.log >/dev/null && cat /tmp/config-fox-airport.log; true ; } > /tmp/yarn/9b-db
+            echo "file $(basename /tmp/yarn/9b-db) is $(wc -c </tmp/yarn/9b-db) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - '9b-db'
+  W9:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Last tidy up before release
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; for word in $(seq 1 4); do echo "${word} squared is $((word**2))"; done; true ; } > /tmp/yarn/audit-047224.log
+            echo "file $(basename /tmp/yarn/audit-047224.log) is $(wc -c </tmp/yarn/audit-047224.log) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - 'audit-047224.log'
+  diff_split_wrench_gadget:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: Stage five patch the login attempts
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; readlink -f /usr/bin/*sum | head -2; true ; } > /tmp/yarn/20260918
+            echo "file $(basename /tmp/yarn/20260918) is $(wc -c </tmp/yarn/20260918) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - '20260918'
+  skoundquamtee-kit:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yarn
+      - run:
+          name: maybe color grade the podcast episode
+          command: |
+            mkdir -p /tmp/yarn
+            { set +o pipefail 2>/dev/null; for p in blue cyan yellow green black gray;do echo "$p"; done | nl; true ; } > /tmp/yarn/955f1159-baf5
+            echo "file $(basename /tmp/yarn/955f1159-baf5) is $(wc -c </tmp/yarn/955f1159-baf5) B"
+      - persist_to_workspace:
+          root: /tmp/yarn
+          paths:
+            - '955f1159-baf5'
+workflows:
+  pipeline:
+    jobs:
+      - cos_independant
+      - clip_elf:
+          requires:
+            - cos_independant
+      - java17-build:
+          requires:
+            - clip_elf
+      - var-shared-bus:
+          requires:
+            - clip_elf
+      - Victor:
+          requires:
+            - var-shared-bus
+      - succes-only:
+          requires:
+            - Victor
+      - oldFixture:
+          requires:
+            - Victor
+      - popHAL:
+          requires:
+            - oldFixture
+      - nico-run:
+          requires:
+            - popHAL
+      - checkbox--inline:
+          requires:
+            - popHAL
+      - bastion-uat-73:
+          requires:
+            - checkbox--inline
+      - wip-db-crash:
+          requires:
+            - bastion-uat-73
+      - B0-86-8C-94-DD-30
+      - i10_78:
+          requires:
+            - B0-86-8C-94-DD-30
+      - vega-final:
+          requires:
+            - i10_78
+      - API_ZONE_FAILED:
+          requires:
+            - i10_78
+      - ct4xazwi55196:
+          requires:
+            - API_ZONE_FAILED
+      - alpha-4:
+          requires:
+            - ct4xazwi55196
+      - cPlatinum:
+          requires:
+            - ct4xazwi55196
+      - almonds:
+          requires:
+            - cPlatinum
+      - jess-ship:
+          requires:
+            - almonds
+      - ntnccofhnnc7g:
+          requires:
+            - almonds
+      - ryo42:
+          requires:
+            - ntnccofhnnc7g
+      - ken-ship:
+          requires:
+            - ryo42
+      - chainWithCount:
+          requires:
+            - ryo42
+      - ok:
+          requires:
+            - chainWithCount
+      - jul6-ship:
+          requires:
+            - ok
+      - rt803:
+          requires:
+            - ok
+      - nut-weight:
+          requires:
+            - rt803
+      - brodcast:
+          requires:
+            - nut-weight
+      - shouldRestartUser:
+          requires:
+            - nut-weight
+      - qk3:
+          requires:
+            - shouldRestartUser
+      - bun-lint:
+          requires:
+            - qk3
+      - mirror-encode-pipe-digest:
+          requires:
+            - qk3
+      - W9:
+          requires:
+            - mirror-encode-pipe-digest
+      - may9-smoke:
+          requires:
+            - W9
+      - ruleCb
+      - eta_bar
+      - verify-quick-artifact-bundle:
+          requires:
+            - ruleCb
+            - eta_bar
+      - rl-alt:
+          requires:
+            - ruleCb
+            - eta_bar
+      - ga-v2:
+          requires:
+            - ruleCb
+            - eta_bar
+      - rip-it:
+          requires:
+            - ruleCb
+            - eta_bar
+      - NBF__BOTTOM_DATABASE
+      - ci-v2:
+          requires:
+            - NBF__BOTTOM_DATABASE
+      - Exit-ResourceObject:
+          requires:
+            - NBF__BOTTOM_DATABASE
+      - q4-ship:
+          requires:
+            - Exit-ResourceObject
+      - union_arg:
+          requires:
+            - Exit-ResourceObject
+      - APP-718:
+          requires:
+            - union_arg
+      - blend-spring-cluster-lion:
+          requires:
+            - union_arg
+      - teh-ci-60:
+          requires:
+            - blend-spring-cluster-lion
+      - reduce_proxy
+      - STAGE_DEV:
+          requires:
+            - reduce_proxy
+      - cq9:
+          requires:
+            - reduce_proxy
+      - check-nightly-regression-suite:
+          requires:
+            - cq9
+      - Xiokyiack:
+          requires:
+            - cq9
+      - ed-run:
+          requires:
+            - Xiokyiack
+      - inner-flag:
+          requires:
+            - Xiokyiack
+      - raj-run:
+          requires:
+            - inner-flag
+      - NamedFakeArticleElement:
+          requires:
+            - inner-flag
+      - v1-preview:
+          requires:
+            - NamedFakeArticleElement
+      - calcVPNs:
+          requires:
+            - NamedFakeArticleElement
+      - realease-46:
+          requires:
+            - calcVPNs
+      - c:
+          requires:
+            - calcVPNs
+      - jess-ci:
+          requires:
+            - c
+      - handle_shell_disconnect:
+          requires:
+            - c
+      - strated-51:
+          requires:
+            - handle_shell_disconnect
+      - dumpCountForKey
+      - diff_split_wrench_gadget:
+          requires:
+            - dumpCountForKey
+      - gating:
+          requires:
+            - diff_split_wrench_gadget
+      - CREATEidx:
+          requires:
+            - diff_split_wrench_gadget
+      - skoundquamtee-kit:
+          requires:
+            - CREATEidx
+      - auh-check-41:
+          requires:
+            - skoundquamtee-kit
